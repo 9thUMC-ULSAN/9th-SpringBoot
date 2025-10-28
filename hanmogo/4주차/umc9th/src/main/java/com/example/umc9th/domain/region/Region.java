@@ -12,11 +12,11 @@ import java.util.List;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class Region { // BaseEntity 상속 불필요 (DDL에 타임스탬프 없음)
+public class Region {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer regionId; // DDL: int
+    private Integer regionId;
 
     @Column(length = 255)
     private String name;
