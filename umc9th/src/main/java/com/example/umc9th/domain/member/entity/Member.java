@@ -4,7 +4,7 @@ import com.example.umc9th.domain.member.entity.mapping.MemberFood;
 import com.example.umc9th.domain.member.entity.mapping.MemberTerm;
 import com.example.umc9th.domain.member.enums.Address;
 import com.example.umc9th.domain.member.enums.Gender;
-import com.example.umc9th.domain.mission.entity.Mission;
+import com.example.umc9th.domain.member.enums.SocialType;
 import com.example.umc9th.domain.mission.entity.mapping.MemberMission;
 import com.example.umc9th.global.BaseEntity;
 import jakarta.persistence.*;
@@ -52,6 +52,9 @@ public class Member extends BaseEntity {
 
     @Column(name = "social_uid", nullable = false)
     private String socialUid;
+
+    @Column(name = "social_type", nullable = false)
+    private SocialType socialType;
 
     @Column(name = "point", nullable = false)
     private Integer point;

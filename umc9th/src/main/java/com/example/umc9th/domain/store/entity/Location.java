@@ -1,14 +1,11 @@
 package com.example.umc9th.domain.store.entity;
 
-
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
