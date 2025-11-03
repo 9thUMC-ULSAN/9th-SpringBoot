@@ -1,14 +1,11 @@
 package com.example.umc9th.domain.mission.entity;
-
-import com.example.umc9th.domain.member.entity.Member;
 import com.example.umc9th.domain.store.entity.Store;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+
 
 @Entity
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
