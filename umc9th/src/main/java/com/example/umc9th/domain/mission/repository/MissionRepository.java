@@ -8,15 +8,28 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface MissionRepository extends JpaRepository<Mission, Long> {
-    // 🔹 특정 지역(location.name)에 속한 미션 조회
-    @Query("SELECT m FROM Mission m JOIN m.store s JOIN s.location l WHERE l.name = :locationName")
-    List<Mission> findMissionsByLocation(@Param("locationName") String locationName);
 
-    // 🔹 특정 가게(store.id)에 등록된 미션 목록
-    @Query("SELECT m FROM Mission m JOIN m.store s WHERE s.id = :storeId")
+    // 특정 지역의 미션 목록
+    List<Mission> findByStore_Location_Name(String locationName);
+
+    // 특정 가게의 미션 목록
+    @Query("SELECT m FROM Mission m WHERE m.store.id = :storeId")
     List<Mission> findMissionsByStoreId(@Param("storeId") Long storeId);
 
-    // 🔹 포인트가 일정 기준 이상인 미션 조회
-    @Query("SELECT m FROM Mission m WHERE m.point >= :minPoint ORDER BY m.point DESC")
-    List<Mission> findHighPointMissions(@Param("minPoint") int minPoint);
+    // 특정 지역에서 아직 완료되지 않은 미션들
+    @Query("""
+        SELECT m FROM Mission m
+        JOIN m.store s
+        JOIN s.location l
+        WHERE l.id = :locationId
+          AND (m.deadline IS NULL OR m.deadline > CURRENT_DATE)
+          AND NOT EXISTS (
+              SELECT 1 FROM MemberMission mm
+              WHERE mm.mission.id = m.id
+              AND mm.member.id = :memberId
+          )
+        ORDER BY COALESCE(m.createdAt, m.deadline) DESC
+    """)
+    List<Mission> findAvailableMissions(@Param("locationId") Long locationId,
+                                        @Param("memberId") Long memberId);
 }
