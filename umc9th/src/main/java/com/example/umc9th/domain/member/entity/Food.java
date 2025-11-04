@@ -18,7 +18,4 @@ public class Food {
     @Enumerated(EnumType.STRING)
     @Column(name = "name")
     private FoodType name;
-
-    //pr 테스트
-    private String testname;
 }
