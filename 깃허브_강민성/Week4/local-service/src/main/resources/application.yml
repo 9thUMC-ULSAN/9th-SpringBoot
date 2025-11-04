@@ -1,0 +1,21 @@
+spring:
+  # 🚨 데이터 소스 설정 (실제 MySQL 정보로 수정 필요) 🚨
+  datasource:
+    url: jdbc:mysql://localhost:3306/local_mission_db?serverTimezone=Asia/Seoul
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # JPA/Hibernate 설정
+  jpa:
+    hibernate:
+      ddl-auto: create # 테이블 자동 생성 및 덮어쓰기 (미션 완료 후 update로 변경 권장)
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  # schema.sql 파일 자동 실행 설정
+  sql:
+    init:
+      mode: always
