@@ -56,14 +56,14 @@ public class Member extends BaseTimeEntity {
     // --- 연관관계 매핑 ---
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<MemberMission> memberMissionList = new ArrayList<>(); // 👈 변경
+    private List<MemberMission> memberMissionList = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<Review> reviewList = new ArrayList<>(); // 👈 변경 (mappedBy)
+    private List<Review> reviewList = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<MemberAgreement> memberAgreementList = new ArrayList<>(); // 👈 변경
+    private List<MemberAgreement> memberAgreementList = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<MemberPreference> memberPreferenceList = new ArrayList<>(); // 👈 변경
+    private List<MemberPreference> memberPreferenceList = new ArrayList<>();
 }
