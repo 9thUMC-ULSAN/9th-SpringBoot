@@ -24,8 +24,9 @@ public class ServiceAgreement extends BaseTimeEntity {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    private Boolean option;
+    private Boolean options;
 
+    @Builder.Default
     @OneToMany(mappedBy = "serviceAgreement", cascade = CascadeType.ALL)
     private List<MemberAgreement> memberAgreementList = new ArrayList<>();
 }

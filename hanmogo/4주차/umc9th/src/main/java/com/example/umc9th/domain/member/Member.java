@@ -18,13 +18,15 @@ import java.util.List;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@Table(name = "user") //
+@Table(name = "users") //
 public class Member extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long memberId;
+
+
     @Column(length = 50)
     private String name;
 
@@ -33,7 +35,7 @@ public class Member extends BaseTimeEntity {
     @Column(length = 20)
     private String gender;
 
-    @Column(columnDefinition = "VARCHAR")
+    @Column(columnDefinition = "TEXT")
     private String detailAddress;
 
     @Column(length = 254)
@@ -42,12 +44,12 @@ public class Member extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private SocialType socialType;
 
-    @Column(columnDefinition = "VARCHAR")
+    @Column(length = 254)
     private String socialUid;
 
     private Integer point;
 
-    @Column(columnDefinition = "VARCHAR")
+    @Column(length = 254)
     private String email;
 
     @Column(length = 15)
@@ -55,15 +57,19 @@ public class Member extends BaseTimeEntity {
 
     // --- 연관관계 매핑 ---
 
+    @Builder.Default
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<MemberMission> memberMissionList = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Review> reviewList = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<MemberAgreement> memberAgreementList = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<MemberPreference> memberPreferenceList = new ArrayList<>();
 }

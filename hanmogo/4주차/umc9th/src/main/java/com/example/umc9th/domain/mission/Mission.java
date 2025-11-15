@@ -23,7 +23,7 @@ public class Mission extends BaseTimeEntity {
     @Column(length = 25)
     private String title;
 
-    @Column(columnDefinition = "VARCHAR")
+    @Column(length = 254)
     private String conditional;
 
     private Integer point;
@@ -36,6 +36,7 @@ public class Mission extends BaseTimeEntity {
     @JoinColumn(name = "store_id")
     private Store store;
 
+    @Builder.Default
     @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL)
     private List<MemberMission> userMissionList = new ArrayList<>();
 }

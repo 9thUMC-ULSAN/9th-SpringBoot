@@ -21,6 +21,7 @@ public class FoodCategory {
     @Column(length = 20)
     private String name;
 
+    @Builder.Default
     @OneToMany(mappedBy = "foodCategory", cascade = CascadeType.ALL)
     private List<MemberPreference> userPreferenceList = new ArrayList<>();
 }
