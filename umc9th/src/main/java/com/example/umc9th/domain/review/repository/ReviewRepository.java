@@ -6,15 +6,43 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import java.util.List;
 
-public interface ReviewRepository extends JpaRepository<Review, Long> {
-    // 특정 가게(store.id)의 리뷰 목록
-    List<Review> findByStore_Id(Long storeId);
+public interface ReviewRepository extends JpaRepository<Review, Long>, ReviewQueryDsl{
+    // 지역만 조회
+    @Query(
+            value = "SELECT r1.* " +
+                    "FROM review r1 " +
+                    "LEFT JOIN store s1 ON r1.store_id = s1.id " +
+                    "LEFT JOIN location l1 ON s1.location_id = l1.id " +
+                    "WHERE l1.name LIKE CONCAT('%', :name, '%')",
+            nativeQuery = true
+    )
+    List<Review> searchReviewByLocation(@Param("name") String name);
 
-    // 특정 회원이 작성한 리뷰 목록
-    @Query("SELECT r FROM Review r JOIN r.store s WHERE r.member.id = :memberId ORDER BY r.createdAt DESC")
-    List<Review> findReviewsByMember(@Param("memberId") Long memberId);
+    // 별점만 조회
+    @Query(
+            value = "SELECT r1.* " +
+                    "FROM review r1 " +
+                    "LEFT JOIN store s1 ON r1.store_id = s1.id " +
+                    "LEFT JOIN location l1 ON s1.location_id = l1.id " +
+                    "WHERE r1.star > :star",
+            nativeQuery = true
+    )
+    List<Review> searchReviewByStar(@Param("star") Float star);
 
-    // 특정 가게(store.id)
-    @Query("SELECT r FROM Review r WHERE r.store.id = :storeId ORDER BY r.createdAt DESC")
-    List<Review> findReviewsByStoreLatest(@Param("storeId") Long storeId);
+    // 지역 + 별점 조회
+    @Query(
+            value = "SELECT r1.* " +
+                    "FROM review r1 " +
+                    "LEFT JOIN store s1 ON r1.store_id = s1.id " +
+                    "LEFT JOIN location l1 ON s1.location_id = l1.id " +
+                    "WHERE l1.name LIKE CONCAT('%', :name, '%') " +
+                    "AND r1.star > :star",
+            nativeQuery = true
+    )
+    List<Review> searchReviewByLocationAndStar(
+            @Param("name") String name,
+            @Param("star") Float star
+    );
+
+
 }
