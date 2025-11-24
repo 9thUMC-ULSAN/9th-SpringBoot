@@ -5,6 +5,12 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+# QueryDSL Q-Class generated files
+/src/main/generated/
+/build/generated/
+/build/generated/querydsl/
+
+
 ### STS ###
 .apt_generated
 .classpath
