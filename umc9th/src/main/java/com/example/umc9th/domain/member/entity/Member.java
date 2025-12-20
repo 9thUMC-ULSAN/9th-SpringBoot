@@ -41,7 +41,7 @@ public class Member extends BaseEntity {
     private Gender gender = Gender.NONE;
 
     @Column(name = "birth", nullable = false)
-    private LocalDate birthday;
+    private LocalDate birth;
 
     @Column(name = "address", nullable = false)
     private Address address;
@@ -53,10 +53,11 @@ public class Member extends BaseEntity {
     private String socialUid;
 
     @Column(name = "social_type", nullable = false)
-    private SocialType socialType;
+    @Enumerated(EnumType.STRING)
+    private SocialType socialType = SocialType.LOCAL;
 
     @Column(name = "point", nullable = false)
-    private Integer point;
+    private Integer point = 0;
 
     @Column(name = "email", nullable = false)
     private String email;
@@ -77,6 +78,7 @@ public class Member extends BaseEntity {
 
     //연관관계
     @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
+    @Builder.Default
     private List<MemberFood> memberFoodList = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)

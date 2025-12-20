@@ -1,19 +1,25 @@
 package com.example.umc9th.domain.review.controller;
 
+import com.example.umc9th.domain.review.dto.ReviewRequestDTO;
+import com.example.umc9th.domain.review.dto.ReviewResponseDTO;
 import com.example.umc9th.domain.review.entity.Review;
+import com.example.umc9th.domain.review.exception.code.ReviewSuccessCode;
 import com.example.umc9th.domain.review.service.ReviewQueryService;
+import com.example.umc9th.domain.review.service.ReviewService;
+import com.example.umc9th.global.apiPayload.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
+@RequestMapping("/stores")
 public class ReviewController {
 
     private final ReviewQueryService reviewQueryService;
+    private final ReviewService reviewService;
 
 //    @GetMapping("/reviews/search")
 //    public List<Review> searchReview(
@@ -31,5 +37,16 @@ public class ReviewController {
         @RequestParam(required = false) Integer starRange
     ) {
     return reviewQueryService.getMyReviews(storeName, starRange);
+    }
+
+    @PostMapping("/{storeId}/reviews")
+    public ApiResponse<ReviewResponseDTO> createReview(
+            @PathVariable Long storeId,
+            @RequestBody ReviewRequestDTO request
+    ) {
+        return ApiResponse.onSuccess(
+                ReviewSuccessCode.CREATED,
+                reviewService.createReview(storeId, request)
+        );
     }
 }
