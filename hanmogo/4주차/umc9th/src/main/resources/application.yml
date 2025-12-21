@@ -11,9 +11,9 @@ logging:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/umc9th?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3306/umc9th?useSSL=false&serverTimezone=UTC&characterEncoding=UTF8
     username: root
-    password: rootpass
+    password: 1234
 
 
   jpa:
@@ -23,7 +23,7 @@ spring:
       # update: 변경된 스키마만 찾아서 반영
       # validate: Entity와 테이블이 정상 매핑되었는지 검증만 함
       # none: 사용 안 함 (운영 환경에서 권장)
-      ddl-auto: update
+      ddl-auto: create
     properties:
       hibernate:
         format_sql: true # SQL 쿼리를 보기 좋게 포맷팅하여 로그에 출력

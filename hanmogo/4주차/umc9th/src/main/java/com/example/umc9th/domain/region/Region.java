@@ -18,10 +18,9 @@ public class Region {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer regionId;
 
-    @Column(length = 254)
+    @Column(length = 255)
     private String name;
 
-    @Builder.Default
     @OneToMany(mappedBy = "region", cascade = CascadeType.ALL)
     private List<Store> storeList = new ArrayList<>();
 }

@@ -11,7 +11,6 @@ import java.util.List;
 
 @Entity
 @Getter
-@Setter
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -19,12 +18,12 @@ public class Review extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long reviewId;
 
     @Column(columnDefinition = "TEXT")
-    private String content;
+    private String body;
 
-    private Float score;
+    private Integer score;
 
     // --- 연관관계 매핑 ---
 
@@ -36,7 +35,6 @@ public class Review extends BaseTimeEntity {
     @JoinColumn(name = "user_id")
     private Member member;
 
-    @Builder.Default
     @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
     private List<ReviewImage> reviewImageList = new ArrayList<>();
 }

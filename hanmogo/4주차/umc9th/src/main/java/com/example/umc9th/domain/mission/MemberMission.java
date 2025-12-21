@@ -16,7 +16,7 @@ public class MemberMission extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_mission_id")
-    private Long id;
+    private Long memberMissionId;
 
     @Column(length = 15)
     private String status;

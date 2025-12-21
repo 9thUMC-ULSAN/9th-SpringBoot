@@ -4,7 +4,6 @@ import com.example.umc9th.domain.store.Store;
 import com.example.umc9th.global.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -19,17 +18,15 @@ public class Mission extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long missionId;
 
     @Column(length = 25)
     private String title;
 
-    @Column(length = 254)
+    @Column(columnDefinition = "VARCHAR")
     private String conditional;
 
-    private String missionSpec;
-
-    private Integer reward;
+    private Integer point;
 
     private LocalDate deadline;
 
@@ -39,7 +36,6 @@ public class Mission extends BaseTimeEntity {
     @JoinColumn(name = "store_id")
     private Store store;
 
-    @Builder.Default
     @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL)
     private List<MemberMission> userMissionList = new ArrayList<>();
 }

@@ -9,7 +9,6 @@ import com.example.umc9th.domain.review.Review;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,24 +18,22 @@ import java.util.List;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@Table(name = "users") //
+@Table(name = "user") //
 public class Member extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private Long id;
-
-
+    private Long memberId;
     @Column(length = 50)
     private String name;
 
-    private LocalDate birthdate;
+    private LocalDateTime birthdate;
 
     @Column(length = 20)
     private String gender;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "VARCHAR")
     private String detailAddress;
 
     @Column(length = 254)
@@ -45,12 +42,12 @@ public class Member extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private SocialType socialType;
 
-    @Column(length = 254)
+    @Column(columnDefinition = "VARCHAR")
     private String socialUid;
 
     private Integer point;
 
-    @Column(length = 254)
+    @Column(columnDefinition = "VARCHAR")
     private String email;
 
     @Column(length = 15)
@@ -58,19 +55,15 @@ public class Member extends BaseTimeEntity {
 
     // --- 연관관계 매핑 ---
 
-    @Builder.Default
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<MemberMission> memberMissionList = new ArrayList<>();
+    private List<MemberMission> memberMissionList = new ArrayList<>(); // 👈 변경
 
-    @Builder.Default
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<Review> reviewList = new ArrayList<>();
+    private List<Review> reviewList = new ArrayList<>(); // 👈 변경 (mappedBy)
 
-    @Builder.Default
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<MemberAgreement> memberAgreementList = new ArrayList<>();
+    private List<MemberAgreement> memberAgreementList = new ArrayList<>(); // 👈 변경
 
-    @Builder.Default
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<MemberPreference> memberPreferenceList = new ArrayList<>();
+    private List<MemberPreference> memberPreferenceList = new ArrayList<>(); // 👈 변경
 }

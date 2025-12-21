@@ -16,7 +16,7 @@ public class ServiceAgreement extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer serviceAgreementId;
 
     @Column(columnDefinition = "TEXT")
     private String term;
@@ -24,9 +24,8 @@ public class ServiceAgreement extends BaseTimeEntity {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    private Boolean options;
+    private Boolean option;
 
-    @Builder.Default
     @OneToMany(mappedBy = "serviceAgreement", cascade = CascadeType.ALL)
     private List<MemberAgreement> memberAgreementList = new ArrayList<>();
 }

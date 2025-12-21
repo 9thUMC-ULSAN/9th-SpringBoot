@@ -19,14 +19,14 @@ public class Store extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long storeId;
 
-    @Column(length = 254)
+    @Column(length = 255)
     private String name;
 
     private Long managerNumber;
 
-    @Column(length = 254)
+    @Column(length = 255)
     private String address;
 
     // --- 연관관계 매핑 ---
@@ -35,11 +35,9 @@ public class Store extends BaseTimeEntity {
     @JoinColumn(name = "region_id")
     private Region region;
 
-    @Builder.Default
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
     private List<Mission> missionList = new ArrayList<>();
 
-    @Builder.Default
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
     private List<Review> reviewList = new ArrayList<>();
 }
