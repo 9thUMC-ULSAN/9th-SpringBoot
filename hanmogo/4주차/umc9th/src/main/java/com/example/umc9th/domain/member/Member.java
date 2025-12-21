@@ -9,6 +9,7 @@ import com.example.umc9th.domain.review.Review;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,13 +25,13 @@ public class Member extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private Long memberId;
+    private Long id;
 
 
     @Column(length = 50)
     private String name;
 
-    private LocalDateTime birthdate;
+    private LocalDate birthdate;
 
     @Column(length = 20)
     private String gender;

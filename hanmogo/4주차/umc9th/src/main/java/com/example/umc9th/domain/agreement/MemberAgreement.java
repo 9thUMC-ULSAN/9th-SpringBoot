@@ -16,7 +16,7 @@ public class MemberAgreement extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_agreement_id")
-    private Long memberAgreementId;
+    private Long id;
 
     // --- 연관관계 매핑 ---
 

@@ -16,7 +16,7 @@ public class ServiceAgreement extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer serviceAgreementId;
+    private Integer id;
 
     @Column(columnDefinition = "TEXT")
     private String term;

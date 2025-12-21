@@ -50,7 +50,7 @@ public class ReviewRepositoryCustomImpl implements ReviewRepositoryCustom {
                         ratingEq(rating)
                 );
 
-        // PageableExecutionUtils.getPage()를 사용해 Page 객체 생성 (최적화)
+        // PageableExecutionUtils.getPage()를 사용해 Page 객체 생성
         return PageableExecutionUtils.getPage(content, pageable, countQuery::fetchOne);
     }
 

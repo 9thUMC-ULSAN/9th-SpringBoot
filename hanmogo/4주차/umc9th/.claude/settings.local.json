@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cat:*)",
+      "Bash(./gradlew test:*)",
+      "Bash(find:*)",
+      "Bash(./gradlew clean build:*)",
+      "Bash(./gradlew build:*)",
+      "Bash(./gradlew clean test:*)",
+      "Bash(git add \"hanmogo/4주차/\" \"hanmogo/8주차/\")"
+    ]
+  }
+}

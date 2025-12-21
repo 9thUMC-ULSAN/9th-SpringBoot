@@ -16,7 +16,9 @@ public class MemberPreference extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_preference_id")
-    private Long memberPreferenceId;
+    private Long id;
+
+    private String name;
 
     // --- 연관관계 매핑 ---
 
